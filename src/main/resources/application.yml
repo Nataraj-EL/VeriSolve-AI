@@ -1,0 +1,63 @@
+spring:
+  application:
+    name: master-ai-backend
+  threads:
+    virtual:
+      enabled: true # Enable Project Loom Virtual Threads
+  
+  # Database Configuration (Placeholder)
+  datasource:
+    url: jdbc:postgresql://localhost:5432/masterai
+    username: postgres
+    password: password
+    driver-class-name: org.postgresql.Driver
+  jpa:
+    hibernate:
+      ddl-auto: update
+    properties:
+      hibernate:
+        dialect: org.hibernate.dialect.PostgreSQLDialect
+
+  # AI Configuration
+  ai:
+    openai:
+      api-key: sk-proj-dummy-openai-key-that-does-not-exist
+      base-url: https://api.openai.com # Default
+      chat:
+        options:
+          model: gpt-3.5-turbo # Cost effective for testing
+    
+    anthropic:
+      api-key: sk-ant-dummy-anthropic-key-that-does-not-exist
+      chat:
+        options:
+          model: claude-3-haiku-20240307 # Cheapest Anthropic model
+          
+    gemini:
+      api-key: ${GEMINI_API_KEY}
+      base-url: https://generativelanguage.googleapis.com
+      model: gemini-2.0-flash-001
+
+    # Custom configuration for Groq (using OpenAI compatibility)
+    groq:
+      api-key: ${GROQ_API_KEY}
+      base-url: https://api.groq.com/openai
+      model: llama-3.3-70b-versatile
+
+    # Cohere Configuration
+    cohere:
+      api-key: ${COHERE_API_KEY}
+      base-url: https://api.cohere.ai/v1
+      model: command-r-08-2024
+
+    # Hugging Face Configuration
+    huggingface:
+      api-key: ${HUGGINGFACE_API_KEY}
+      base-url: https://router.huggingface.co/hf-inference/models
+      model: Qwen/Qwen2.5-72B-Instruct
+      timeout: 10000
+
+    # Health Manager Configuration
+    health:
+      auth-suppression-duration-seconds: 3600
+      quota-suppression-duration-seconds: 600
