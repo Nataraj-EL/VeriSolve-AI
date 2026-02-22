@@ -19,5 +19,5 @@ COPY --from=build /app/target/*.jar app.jar
 # Expose the application port
 EXPOSE 8080
 
-# Run the application
-ENTRYPOINT ["java", "-jar", "app.jar"]
+# Run the application with preview features enabled
+ENTRYPOINT ["java", "--enable-preview", "-jar", "app.jar"]
