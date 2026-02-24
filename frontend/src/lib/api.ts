@@ -1,8 +1,11 @@
 import axios from 'axios';
 
+// Strict fallback for production builds if env var is missing
 const API_BASE_URL = process.env.NEXT_PUBLIC_API_URL
     ? `${process.env.NEXT_PUBLIC_API_URL}/api/v1`
-    : 'http://localhost:8080/api/v1';
+    : process.env.NODE_ENV === 'production'
+        ? 'https://verisolve-ai.onrender.com/api/v1'
+        : 'http://localhost:8080/api/v1';
 
 export const api = axios.create({
     baseURL: API_BASE_URL,
