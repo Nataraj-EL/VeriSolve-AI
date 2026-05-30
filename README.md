@@ -1,16 +1,15 @@
-# VeriSolve 🧠🤖
+# VeriSolve 
 
 [![Spring Boot](https://img.shields.io/badge/Spring%20Boot-3.2.3-brightgreen.svg)](https://spring.io/projects/spring-boot)
 [![Next.js](https://img.shields.io/badge/Next.js-16.1.6-black.svg)](https://nextjs.org/)
 [![Java](https://img.shields.io/badge/Java-21-orange.svg)](https://www.oracle.com/java/)
 [![PostgreSQL](https://img.shields.io/badge/PostgreSQL-16-blue.svg)](https://www.postgresql.org/)
-[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 
 A self-calibrating multimodal AI arbitration platform that validates, scores, and synthesizes solutions across multiple LLM providers using concurrent virtual threads, weighted consensus engines, and real-time arithmetic reasoning validation.
 
 ---
 
-## 📖 Project Overview
+## Project Overview
 
 ### The Problem
 Single-model LLM inference is highly prone to **hallucinations**, **logical slips**, and **transient provider failures** (timeouts, rate limits, API outages). For complex analytical tasks—such as technical aptitude solving, competitive programming, and algorithm optimization—relying on a single model introduces a single point of failure in accuracy and uptime.
@@ -25,7 +24,7 @@ Single-model LLM inference is highly prone to **hallucinations**, **logical slip
 
 ---
 
-## 🚀 Key Features
+## Key Features
 
 *   **Multi-Provider Concurrent AI Arbitration:** Queries OpenAI, Anthropic, Google Gemini, Groq, and Cohere concurrently using high-performance concurrent processing.
 *   **Competitive "Race-to-2" Strategy:** Latency optimizer that waits for the fastest two Tier 1 responses within an 8-second window, dropping late-responding models to prevent slower providers from dragging down overall API response times.
@@ -40,7 +39,7 @@ Single-model LLM inference is highly prone to **hallucinations**, **logical slip
 
 ---
 
-## 🏛️ Architecture Overview
+## Architecture Overview
 
 VeriSolve is engineered as an event-driven, microservices-inspired full-stack application composed of:
 1.  **Next.js Frontend:** Single-page application using React 19, Framer Motion, and Tailwind CSS.
@@ -79,7 +78,7 @@ graph TD
 
 ---
 
-## ⚙️ System Design & Lifecycle
+## System Design & Lifecycle
 
 The lifecycle of an inference arbitration query travels through five distinct phases:
 
@@ -96,7 +95,7 @@ The lifecycle of an inference arbitration query travels through five distinct ph
 
 ---
 
-## 💻 Tech Stack
+## Tech Stack
 
 ### Frontend
 *   **Framework:** Next.js 16.1.6 (React 19.2.3, TypeScript 5)
@@ -126,7 +125,7 @@ The lifecycle of an inference arbitration query travels through five distinct ph
 
 ---
 
-## 🧮 Consensus Engine & Mathematics
+## Consensus Engine & Mathematics
 
 The `ConsensusEngine` executes a deterministic arbitration algorithm to elect the most reliable answer.
 
@@ -166,7 +165,7 @@ $$\text{FinalConfidence} = \min(\text{FinalConfidence}, 0.85)$$
 
 ---
 
-## 🛡️ Self-Calibrating Sensor Network (`ProviderHealthManager`)
+## Self-Calibrating Sensor Network (`ProviderHealthManager`)
 
 The `ProviderHealthManager` manages a dynamic state machine for each provider, shifting states between `ACTIVE`, `SUPPRESSED`, and `DEGRADED`.
 
@@ -209,7 +208,7 @@ $$\text{Weight}_{\text{dynamic}} = \max\left(0.2, \min\left(1.0, 1.0 - \text{Fai
 
 ---
 
-## 🔍 Logical Verification Layer
+## Logical Verification Layer
 
 The `ArithmeticValidator` conducts regex parsing to detect mathematical deviations inside reasoning outputs.
 
@@ -229,7 +228,7 @@ $$\left| \text{CalculatedResult} - \text{StatedResult} \right| > \epsilon \impli
 
 ---
 
-## 💻 STRICT DSA & APTITUDE Modes
+## STRICT DSA & APTITUDE Modes
 
 Prompts are structured dynamically using the subject parameter in `BaseAiService.java`.
 
@@ -256,7 +255,7 @@ Forces models to function as **Logical Reasoning Engines**:
 
 ---
 
-## 🗄️ Database Design
+## Database Design
 
 VeriSolve implements database persistence designed for high auditability of AI consensus decisions.
 
@@ -295,7 +294,7 @@ erDiagram
 
 ---
 
-## 🔌 API Documentation
+## API Documentation
 
 ### 1. Solve Question / Aptitude / Coding Challenge
 
@@ -362,7 +361,7 @@ curl -X POST http://localhost:8080/api/v1/questions/solve \
 
 ---
 
-## 🛠️ Local Development Setup
+## Local Development Setup
 
 ### Prerequisites
 *   **Java:** JDK 21 (Temurin / OpenJDK)
@@ -424,7 +423,7 @@ curl -X POST http://localhost:8080/api/v1/questions/solve \
 
 ---
 
-## 🔐 Environment Variables Reference
+## Environment Variables Reference
 
 | Variable | Scope | Description | Default Value |
 | :--- | :--- | :--- | :--- |
@@ -439,7 +438,7 @@ curl -X POST http://localhost:8080/api/v1/questions/solve \
 
 ---
 
-## 🚢 Deployment Guide
+## Deployment Guide
 
 ### Production Docker Multi-Stage Deployment
 The backend utilizes a **multi-stage Docker build** that keeps production image sizes small and excludes build toolchains.
@@ -471,7 +470,7 @@ This orchestrates:
 
 ---
 
-## 🧪 Testing Suite
+## Testing Suite
 
 VeriSolve implements a test suite utilizing Mockito to mock API calls, validating logical penalties and consensus math boundaries.
 
@@ -494,7 +493,7 @@ Run maven test commands:
 
 ---
 
-## 🗺️ Future Roadmap
+## Future Roadmap
 
 *   **Bayesian Trust Modeling:** Evolve `ProviderHealthManager`'s scoring to implement a dynamic Bayesian trust updates model rather than using heuristic penalty subtractions.
 *   **Advanced Symbolic Parsing:** Incorporate SymPy (via an isolated microservice) to evaluate mathematical equivalences beyond simple regex equations (e.g. validating $x+y=y+x$ or algebraic equations).
@@ -503,19 +502,4 @@ Run maven test commands:
 
 ---
 
-## 🎖️ Resume-Worthy Engineering Achievements
-
-*   **Project Loom Virtual Threads Integration:** Enabled high-throughput, non-blocking network calls, replacing resource-intensive thread pools and facilitating lightweight concurrent scheduling of 5+ HTTP clients simultaneously.
-*   **Asynchronous Processing Strategy:** Designed a non-blocking persistence system using `@Async` threads to write interaction traces to PostgreSQL asynchronously, removing DB disk write times from the user's primary HTTP response path.
-*   **Self-Healing Fallback Logic:** Implemented dynamic circuit-breaking and rolling-window weight decay calculations, allowing the system to maintain $99.9\%$ uptime during third-party LLM outages.
-*   **Custom Arithmetic Compiler:** Developed an regex-based equation validation compiler that runs floating-point evaluations with dynamic precision matching, successfully identifying and penalizing invalid reasoning steps in real-time.
-
----
-
-## 📝 License
-
-Distributed under the MIT License. See `LICENSE` for more information.
-
----
-
-**Developed & Maintained by [Nataraj El](mailto:natarajel.dev@gmail.com)**
+**Developed & Maintained by [Nataraj EL](mailto:natarajel.dev@gmail.com)**
